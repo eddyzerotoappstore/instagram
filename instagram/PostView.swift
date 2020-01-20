@@ -14,7 +14,7 @@ struct PostView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack() {
-                Image(post.profileImageName)
+                Image(post.profileImage)
                     .resizable()
                     .frame(width: 30, height: 30)
                     .clipShape(Circle())
@@ -25,7 +25,7 @@ struct PostView: View {
                 }
             }.padding(.horizontal, 10)
             
-            Image(post.imageName)
+            Image(post.image)
                 .resizable()
                 .frame(height: 630)
                 .aspectRatio(contentMode: .fit)
@@ -46,7 +46,7 @@ struct PostView: View {
                     .frame(width: 25, height: 30)
                 }
                 
-                Text("\(post.likes) likes").font(.headline)
+                Text("\(post.likes.count) likes").font(.headline)
                 HStack {
                     Text(post.username)
                         .font(.headline)

@@ -9,15 +9,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var session = FirebaseSession()
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                ForEach(postData) { post in
+                Text("").frame(minWidth: 0, maxWidth: .infinity)
+                ForEach(session.posts) { post in
                     PostView(post: post)
                   }
                   .listRowInsets(EdgeInsets())
             }
-        }
+        }.onAppear(perform: listen)
+    }
+    
+    func listen() {
+        session.getPosts()
     }
 }
 
