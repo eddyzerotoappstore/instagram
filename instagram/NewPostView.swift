@@ -10,7 +10,18 @@ import SwiftUI
 
 struct NewPostView: View {
     var body: some View {
-        Text("new post view")
+        VStack {
+            Button(action: {
+                /// TODO 1: Add the action here
+            }) {
+                Text("Choose Photo")
+            }.padding(30)
+            Button(action: {
+                /// TODO 1: Add the action here
+            }) {
+                Text("Take Photo")
+            }.padding(30)
+        }
     }
 }
 
