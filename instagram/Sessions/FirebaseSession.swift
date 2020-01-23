@@ -17,7 +17,6 @@ class FirebaseSession: ObservableObject {
     
     var query: Query = Firestore.firestore().collection("posts").limit(to: 50)
     
-    
     func getPosts() {
         listener?.remove()
         
@@ -29,10 +28,7 @@ class FirebaseSession: ObservableObject {
             let models = snapshot.documents.map { (document) -> Post? in
                 return Post(id: document.documentID, dict: document.data())
             }
-            DispatchQueue.main.async {
-                self.posts.append(contentsOf: models.compactMap { $0 })
-                self.objectWillChange.send()
-            }
+            self.posts = models.compactMap { $0 }
         }
         
     }
