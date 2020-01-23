@@ -46,7 +46,7 @@ struct PostView: View {
                     .frame(width: 25, height: 30)
                 }
                 
-                Text("\(post.likes.count) likes").font(.headline)
+                Text("\(post.likes) likes").font(.headline)
                 HStack {
                     Text(post.username)
                         .font(.headline)
