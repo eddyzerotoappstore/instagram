@@ -2,3 +2,4 @@ Pods/
 instagram.xcworkspace/ 
 .DS_Store
 instagram.xcodeproj/
+GoogleService-Info.plist
