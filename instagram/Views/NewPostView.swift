@@ -8,18 +8,27 @@
 
 import SwiftUI
 
+class UserInput: ObservableObject {
+    @Published var selectedImage: UIImage?
+    @Published var testBool = true
+}
 
 struct NewPostView: View {
+    @ObservedObject var input = UserInput()
+    
     @State private var showingImagePicker = false
     @State private var showingCamera = false
+    @State private var showEditPhotoView = false
 
     @State private var inputImage: UIImage?
     @State private var image: Image?
-
+    
     var body: some View {
         NavigationView {
             VStack {
-                Button(action: openImagePicker) {
+                Button(action: {
+                    self.showingImagePicker = true
+                }) {
                     Text("Choose Photo")
                 }.padding(30)
                 Button(action: {
@@ -32,21 +41,20 @@ struct NewPostView: View {
             .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                 ImagePicker(image: self.$inputImage)
             }
-            .sheet(isPresented: $showingCamera, onDismiss: loadImage) {
-                ImagePicker(image: self.$inputImage)
+            NavigationLink(destination: Text("hey!"), isActive: $showEditPhotoView) {
+                Text("inside navigation link")
             }
+
         }
 
-    }
-    
-    func openImagePicker() {
-        self.showingImagePicker = true
     }
     
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
         showingImagePicker = false
+        showEditPhotoView = true
+        // navigate to other view
     }
 }
 
