@@ -9,8 +9,15 @@
 import SwiftUI
 
 struct EditPostView: View {
+    @ObservedObject var input: UserInput
     
     var body: some View {
-        Text("testing")
+        VStack {
+            input.selectedImage.map({
+                Image(uiImage:$0)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            })
+        }
     }
 }

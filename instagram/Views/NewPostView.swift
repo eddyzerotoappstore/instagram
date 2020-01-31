@@ -10,18 +10,12 @@ import SwiftUI
 
 class UserInput: ObservableObject {
     @Published var selectedImage: UIImage?
-    @Published var testBool = true
 }
 
 struct NewPostView: View {
     @ObservedObject var input = UserInput()
-    
     @State private var showingImagePicker = false
-    @State private var showingCamera = false
     @State private var showEditPhotoView = false
-
-    @State private var inputImage: UIImage?
-    @State private var image: Image?
     
     var body: some View {
         NavigationView {
@@ -31,30 +25,25 @@ struct NewPostView: View {
                 }) {
                     Text("Choose Photo")
                 }.padding(30)
-                Button(action: {
-                    self.showingCamera = true
-                }) {
-                    Text("Take Photo")
-                }.padding(30)
+                
+                NavigationLink(destination: EditPostView(input: input), isActive: $showEditPhotoView) {
+                    EmptyView()
+                }.onAppear(perform: {
+                    self.showEditPhotoView = false
+                })
             }
-            .navigationBarTitle("hello")
+            .navigationBarTitle("Select Photo")
             .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                ImagePicker(image: self.$inputImage)
+                ImagePicker(image: self.$input.selectedImage)
             }
-            NavigationLink(destination: Text("hey!"), isActive: $showEditPhotoView) {
-                Text("inside navigation link")
-            }
-
         }
-
     }
     
     func loadImage() {
-        guard let inputImage = inputImage else { return }
-        image = Image(uiImage: inputImage)
-        showingImagePicker = false
-        showEditPhotoView = true
-        // navigate to other view
+        if input.selectedImage != nil {
+            showingImagePicker = false
+            showEditPhotoView = true
+        }
     }
 }
 
