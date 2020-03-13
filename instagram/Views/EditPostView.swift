@@ -31,6 +31,11 @@ struct EditPostView: View {
             }
             Spacer()
         }.navigationBarTitle("Edit Post")
+            .navigationBarItems(trailing:
+                Button("Upload") {
+                    print("Upload...")
+                }
+        )
     }
 }
 
