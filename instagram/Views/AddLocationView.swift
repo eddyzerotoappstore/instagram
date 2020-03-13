@@ -10,7 +10,6 @@ import SwiftUI
 
 struct AddLocationView: View {
     @Binding var location: String
-
     var body: some View {
         VStack {
             TextField("Type a location...", text: $location).padding()
@@ -21,6 +20,6 @@ struct AddLocationView: View {
 
 struct AddLocationView_Previews: PreviewProvider {
     static var previews: some View {
-        AddLocationView(location: .constant(""))
+        AddLocationView(location: .constant("San Francisco"))
     }
 }

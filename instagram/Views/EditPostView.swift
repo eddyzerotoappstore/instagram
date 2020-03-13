@@ -15,26 +15,15 @@ struct EditPostView: View {
 
     var body: some View {
         VStack {
-            HStack() {
-                VStack {
-                    GeometryReader { geo in
-                        self.input.selectedImage.map({
-                          Image(uiImage:$0)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: geo.size.width, height: 80)
-                            .clipped()
-                        })
-                    }
-                }.frame(width: 80, height: 80)
-                    .padding()
-                VStack {
-                    TextField("Write a caption...", text: $description)
-                        .frame(alignment: .topLeading)
-                    Spacer()
-                }.frame(height: 80.0)
-                .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 20))
-            }.frame(alignment: .topLeading)
+            HStack {
+                input.selectedImage.map({
+                    Image(uiImage:$0)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                    }).frame(width: 80, height: 80).clipped().padding()
+                
+                TextField("Write a caption...", text: $description)
+            }
             
             Text(location).padding()
             NavigationLink(destination: AddLocationView(location: $location)) {

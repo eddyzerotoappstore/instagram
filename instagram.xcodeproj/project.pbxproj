@@ -127,6 +127,7 @@
 				E8A70F5C2395F82800A0947A /* PostView.swift */,
 				3E791F84240F08AD00B2D045 /* AddLocationView.swift */,
 				3E47093B23D93353001F4436 /* AppView.swift */,
+				3E99A86A241AAAC6004FD438 /* AddLocationView.swift */,
 				3E47093D23D935D0001F4436 /* NewPostView.swift */,
 				3E57D07F23E34FB8001609DA /* EditPostView.swift */,
 			);
