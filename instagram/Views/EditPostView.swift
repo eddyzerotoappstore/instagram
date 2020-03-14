@@ -7,9 +7,12 @@
 //
 
 import SwiftUI
+import FirebaseStorage
 
 struct EditPostView: View {
     @ObservedObject var input: UserInput
+    @ObservedObject var session = FirebaseSession()
+
     @State var description: String = ""
     @State var location: String = ""
 
@@ -33,7 +36,7 @@ struct EditPostView: View {
         }.navigationBarTitle("Edit Post")
             .navigationBarItems(trailing:
                 Button("Upload") {
-                    print("Upload...")
+
                 }
         )
     }
