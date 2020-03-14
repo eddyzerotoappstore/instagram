@@ -36,7 +36,8 @@ struct EditPostView: View {
         }.navigationBarTitle("Edit Post")
             .navigationBarItems(trailing:
                 Button("Upload") {
-
+                    print("uploading...")
+                    self.session.upload(image: self.input.selectedImage, description: self.description, location: self.location)
                 }
         )
     }

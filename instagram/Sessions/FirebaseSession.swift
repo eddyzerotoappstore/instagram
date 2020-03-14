@@ -46,7 +46,11 @@ class FirebaseSession: ObservableObject {
         }
     }
     
-    func upload(image: UIImage, description: String, location: String) {
+    func upload(image: UIImage?, description: String, location: String) {
+        guard let image = image else {
+            print("error image is nil")
+            return
+        }
         let storageRef = Storage.storage().reference().child("images/\(UUID().uuidString).jpg")
         guard let data = image.jpegData(compressionQuality: 0.8) as NSData? else { return }
         _ = storageRef.putData(data as Data, metadata: nil) { (metadata, error) in
